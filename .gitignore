@@ -49,3 +49,4 @@ coverage/
 
 # Docker volumes
 pgdata/
+.superpowers/
