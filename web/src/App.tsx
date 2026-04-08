@@ -64,7 +64,7 @@ function ProtectedRoute({ children, requiredRole }: { children: React.ReactNode;
  */
 function RootRedirect() {
   const { isAuthenticated, userRole } = useAuth();
-  if (!isAuthenticated) return <Navigate to="/landing" replace />;
+  if (!isAuthenticated) return <WaitlistLandingPage />;
   if (userRole === 'chw') return <Navigate to="/chw/dashboard" replace />;
   return <Navigate to="/member/home" replace />;
 }
