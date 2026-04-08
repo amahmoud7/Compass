@@ -1,0 +1,27 @@
+from uuid import UUID
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field
+
+class ServiceRequestCreate(BaseModel):
+    vertical: str
+    urgency: str = "routine"
+    description: str
+    preferred_mode: str = "in_person"
+    estimated_units: int = Field(default=1, ge=1, le=4)
+
+class ServiceRequestResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: UUID
+    member_id: UUID
+    matched_chw_id: UUID | None
+    vertical: str
+    urgency: str
+    description: str
+    preferred_mode: str
+    status: str
+    estimated_units: int
+    created_at: datetime
+
+class ServiceRequestUpdate(BaseModel):
+    status: str | None = None
+    matched_chw_id: UUID | None = None

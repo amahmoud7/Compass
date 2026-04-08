@@ -24,14 +24,25 @@ app.add_middleware(
 )
 app.add_middleware(AuditMiddleware)
 
-# Routers
+# Register all routers
 from app.routers.auth import router as auth_router
+from app.routers.chw import router as chw_router
+from app.routers.member import router as member_router
+from app.routers.sessions import router as sessions_router
+from app.routers.requests import router as requests_router
+from app.routers.matching import router as matching_router
+from app.routers.conversations import router as conversations_router
+from app.routers.credentials import router as credentials_router
+from app.routers.upload import router as upload_router
+from app.routers.health import router as health_router
+
 app.include_router(auth_router)
-
-@app.get("/api/v1/health")
-async def health():
-    return {"status": "ok"}
-
-@app.get("/api/v1/ready")
-async def ready():
-    return {"status": "ready"}
+app.include_router(chw_router)
+app.include_router(member_router)
+app.include_router(sessions_router)
+app.include_router(requests_router)
+app.include_router(matching_router)
+app.include_router(conversations_router)
+app.include_router(credentials_router)
+app.include_router(upload_router)
+app.include_router(health_router)
